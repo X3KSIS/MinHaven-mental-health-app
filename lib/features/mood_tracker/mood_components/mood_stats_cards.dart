@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/model/mood_entry.dart';
+import '../../../themes/app_colors.dart';
 
 class MoodStatsCards extends StatelessWidget {
   final List<MoodEntryData> moods;
@@ -23,7 +24,7 @@ class MoodStatsCards extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: _buildStatCard(
+          child: _buildStatCard(context, 
             'Average',
             avgScore.toStringAsFixed(1),
             Icons.show_chart,
@@ -32,7 +33,7 @@ class MoodStatsCards extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         Expanded(
-          child: _buildStatCard(
+          child: _buildStatCard(context, 
             'This Week',
             '${last7Days.length}',
             Icons.calendar_today,
@@ -41,7 +42,7 @@ class MoodStatsCards extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         Expanded(
-          child: _buildStatCard(
+          child: _buildStatCard(context, 
             'Total',
             '${moods.length}',
             Icons.emoji_emotions,
@@ -52,11 +53,11 @@ class MoodStatsCards extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard(String label, String value, IconData icon, Color color) {
+  Widget _buildStatCard(BuildContext context, String label, String value, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -83,7 +84,7 @@ class MoodStatsCards extends StatelessWidget {
             label,
             style: TextStyle(
               fontSize: 12,
-              color: Colors.grey[600],
+              color: context.textMuted,
             ),
           ),
         ],

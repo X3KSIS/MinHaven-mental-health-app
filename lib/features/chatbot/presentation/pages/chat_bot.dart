@@ -21,6 +21,7 @@ import '../../../settings/settings.dart';
 import '../../data/model.dart';
 import '../../../../widgets/widget_support.dart';
 import '../../../gamification/data/services/gamification_service.dart';
+import '../../../../themes/app_colors.dart';
 
 // ========== MODERATION ENUMS AND CLASSES ==========
 enum ModerationLevel {
@@ -1094,7 +1095,7 @@ class _ChatBotState extends State<ChatBot> {
         final primaryColor = theme.colorScheme.primary;
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          backgroundColor: Colors.white,
+          backgroundColor: context.cardColor,
           title: Text(
             'Rename Chat',
             style: TextStyle(
@@ -1105,10 +1106,10 @@ class _ChatBotState extends State<ChatBot> {
           ),
           content: TextField(
             controller: renameController,
-            style: const TextStyle(color: Colors.black),
+            style: TextStyle(color: context.textStrong),
             decoration: InputDecoration(
               hintText: 'Enter new chat title',
-              hintStyle: TextStyle(color: Colors.grey[600]),
+              hintStyle: TextStyle(color: context.textMuted),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
@@ -1124,7 +1125,7 @@ class _ChatBotState extends State<ChatBot> {
               onPressed: () => Navigator.pop(context),
               child: Text(
                 'Cancel',
-                style: TextStyle(color: Colors.grey[600]),
+                style: TextStyle(color: context.textMuted),
               ),
             ),
             TextButton(
@@ -1179,7 +1180,7 @@ class _ChatBotState extends State<ChatBot> {
           if (!isPrompt) ...[
             CustomPaint(
               painter: MessageTailPainter(
-                color: wasFiltered ? Colors.orange[100]! : Colors.grey[100]!,
+                color: wasFiltered ? (context.isDarkMode ? Colors.orange.withValues(alpha: 0.25) : Colors.orange[100]!) : context.subtleFill,
                 isRight: false,
               ),
             ),
@@ -1217,8 +1218,8 @@ class _ChatBotState extends State<ChatBot> {
                 margin: const EdgeInsets.symmetric(vertical: 4),
                 decoration: BoxDecoration(
                   color: wasFiltered
-                      ? Colors.orange[50]
-                      : isPrompt ? primaryColor : Colors.grey[100],
+                      ? (context.isDarkMode ? Colors.orange.withValues(alpha: 0.15) : Colors.orange[50])
+                      : isPrompt ? primaryColor : context.subtleFill,
                   borderRadius: BorderRadius.only(
                     topLeft: const Radius.circular(20),
                     topRight: const Radius.circular(20),
@@ -1269,7 +1270,7 @@ class _ChatBotState extends State<ChatBot> {
                       style: TextStyle(
                         fontWeight: isPrompt ? FontWeight.w500 : FontWeight.normal,
                         fontSize: 16,
-                        color: isPrompt ? Colors.white : Colors.black87,
+                        color: isPrompt ? context.onPrimary : context.textPrimary,
                         height: 1.4,
                       ),
                     ),
@@ -1281,7 +1282,7 @@ class _ChatBotState extends State<ChatBot> {
                           DateFormat('hh:mm a').format(date),
                           style: TextStyle(
                             fontSize: 12,
-                            color: isPrompt ? Colors.white70 : Colors.black54,
+                            color: isPrompt ? context.onPrimary.withValues(alpha: 0.7) : context.textMuted,
                           ),
                         ),
                         if (wasFiltered)
@@ -1347,7 +1348,7 @@ class _ChatBotState extends State<ChatBot> {
         final userName = authCubit.currentUser?.name ?? 'User';
 
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: context.background,
           body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -1356,7 +1357,7 @@ class _ChatBotState extends State<ChatBot> {
                 colors: [
                   _withOpacity(primaryColor, 0.03),
                   _withOpacity(primaryColor, 0.01),
-                  Colors.white,
+                  context.background,
                 ],
               ),
             ),
@@ -1428,7 +1429,7 @@ class _ChatBotState extends State<ChatBot> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.grey[600],
+                              color: context.textMuted,
                               height: 1.5,
                             ),
                           ),
@@ -1455,7 +1456,7 @@ class _ChatBotState extends State<ChatBot> {
                                   "This is a safe space with content moderation\nand crisis support available 24/7.",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Colors.grey[600],
+                                    color: context.textMuted,
                                     fontSize: 14,
                                   ),
                                 ),
@@ -1486,7 +1487,7 @@ class _ChatBotState extends State<ChatBot> {
                               Container(
                                 padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
-                                  color: Colors.grey[100],
+                                  color: context.subtleFill,
                                   borderRadius: BorderRadius.circular(18),
                                 ),
                                 child: Row(
@@ -1499,7 +1500,7 @@ class _ChatBotState extends State<ChatBot> {
                                     Text(
                                       "MindHaven is thinking...",
                                       style: TextStyle(
-                                        color: Colors.grey[700],
+                                        color: context.textSecondary,
                                         fontSize: 14,
                                       ),
                                     ),
@@ -1529,8 +1530,8 @@ class _ChatBotState extends State<ChatBot> {
                       Expanded(
                         child: TextField(
                           controller: promptController,
-                          style: const TextStyle(
-                            color: Colors.black,
+                          style: TextStyle(
+                            color: context.textStrong,
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
                           ),
@@ -1538,10 +1539,10 @@ class _ChatBotState extends State<ChatBot> {
                           minLines: 1,
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Colors.white,
+                            fillColor: context.cardColor,
                             hintText: "Type your message...",
                             hintStyle: TextStyle(
-                              color: Colors.grey[600],
+                              color: context.textMuted,
                               fontWeight: FontWeight.w400,
                             ),
                             border: OutlineInputBorder(
@@ -1567,7 +1568,7 @@ class _ChatBotState extends State<ChatBot> {
                                   height: 46,
                                   decoration: BoxDecoration(
                                     color: isLoading
-                                        ? Colors.grey[400]
+                                        ? context.textHint
                                         : primaryColor,
                                     shape: BoxShape.circle,
                                     boxShadow: [
@@ -1580,7 +1581,7 @@ class _ChatBotState extends State<ChatBot> {
                                   ),
                                   child: Icon(
                                     Icons.send,
-                                    color: Colors.white,
+                                    color: context.onPrimary,
                                     size: 20,
                                   ),
                                 ),
@@ -1655,28 +1656,28 @@ class _ChatBotState extends State<ChatBot> {
                           children: [
                             CircleAvatar(
                               radius: 20,
-                              backgroundColor: Colors.white.withOpacity(0.2),
-                              child: const Icon(
+                              backgroundColor: context.onPrimary.withOpacity(0.2),
+                              child: Icon(
                                 Icons.android,
                                 size: 20,
-                                color: Colors.white,
+                                color: context.onPrimary,
                               ),
                             ),
                             const SizedBox(height: 12),
-                            const Text(
+                            Text(
                               'M I N D  H A V E N',
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: context.onPrimary,
                               ),
                             ),
                             const SizedBox(height: 4),
-                            const Text(
+                            Text(
                               'Safe mental health companion',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.white70,
+                                color: context.onPrimary.withValues(alpha: 0.7),
                               ),
                             ),
                           ],
@@ -1685,11 +1686,11 @@ class _ChatBotState extends State<ChatBot> {
                       ListTile(
                         leading: Icon(
                           Icons.add,
-                          color: Colors.white.withOpacity(0.9),
+                          color: context.onPrimary.withOpacity(0.9),
                         ),
-                        title: const Text(
+                        title: Text(
                           'New Chat',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: context.onPrimary),
                         ),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         onTap: () {
@@ -1699,11 +1700,11 @@ class _ChatBotState extends State<ChatBot> {
                       ListTile(
                         leading: Icon(
                           Icons.home,
-                          color: Colors.white.withOpacity(0.9),
+                          color: context.onPrimary.withOpacity(0.9),
                         ),
-                        title: const Text(
+                        title: Text(
                           'Home',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: context.onPrimary),
                         ),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         onTap: () {
@@ -1717,11 +1718,11 @@ class _ChatBotState extends State<ChatBot> {
                       ListTile(
                         leading: Icon(
                           Icons.person_outline,
-                          color: Colors.white.withOpacity(0.9),
+                          color: context.onPrimary.withOpacity(0.9),
                         ),
-                        title: const Text(
+                        title: Text(
                           'Profile',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: context.onPrimary),
                         ),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         onTap: () {
@@ -1735,11 +1736,11 @@ class _ChatBotState extends State<ChatBot> {
                       ListTile(
                         leading: Icon(
                           Icons.edit_note,
-                          color: Colors.white.withOpacity(0.9),
+                          color: context.onPrimary.withOpacity(0.9),
                         ),
-                        title: const Text(
+                        title: Text(
                           'Journal',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: context.onPrimary),
                         ),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         onTap: () {
@@ -1753,11 +1754,11 @@ class _ChatBotState extends State<ChatBot> {
                       ListTile(
                         leading: Icon(
                           Icons.settings,
-                          color: Colors.white.withOpacity(0.9),
+                          color: context.onPrimary.withOpacity(0.9),
                         ),
-                        title: const Text(
+                        title: Text(
                           'Settings',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: context.onPrimary),
                         ),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         onTap: () {
@@ -1771,11 +1772,11 @@ class _ChatBotState extends State<ChatBot> {
                       ListTile(
                         leading: Icon(
                           Icons.logout,
-                          color: Colors.white.withOpacity(0.9),
+                          color: context.onPrimary.withOpacity(0.9),
                         ),
-                        title: const Text(
+                        title: Text(
                           'Logout',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: context.onPrimary),
                         ),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                         onTap: () {
@@ -1784,19 +1785,19 @@ class _ChatBotState extends State<ChatBot> {
                         },
                       ),
                       Divider(
-                        color: Colors.white.withOpacity(0.3),
+                        color: context.onPrimary.withOpacity(0.3),
                         thickness: 1,
                         indent: 16,
                         endIndent: 16,
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         child: Text(
                           'Recent Chats',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: context.onPrimary,
                           ),
                         ),
                       ),
@@ -1809,7 +1810,7 @@ class _ChatBotState extends State<ChatBot> {
                             if (snapshot.connectionState == ConnectionState.waiting) {
                               return Center(
                                 child: CircularProgressIndicator(
-                                  color: Colors.white.withOpacity(0.9),
+                                  color: context.onPrimary.withOpacity(0.9),
                                 ),
                               );
                             }
@@ -1819,7 +1820,7 @@ class _ChatBotState extends State<ChatBot> {
                                 child: Text(
                                   'Error loading chats',
                                   style: TextStyle(
-                                    color: Colors.white70,
+                                    color: context.onPrimary.withValues(alpha: 0.7),
                                     fontSize: 14,
                                   ),
                                 ),
@@ -1833,7 +1834,7 @@ class _ChatBotState extends State<ChatBot> {
                                 child: Text(
                                   'No recent chats',
                                   style: TextStyle(
-                                    color: Colors.white70,
+                                    color: context.onPrimary.withValues(alpha: 0.7),
                                     fontSize: 14,
                                   ),
                                 ),
@@ -1850,18 +1851,18 @@ class _ChatBotState extends State<ChatBot> {
                                 return ListTile(
                                   leading: Icon(
                                     Icons.chat_bubble_outline,
-                                    color: Colors.white.withOpacity(0.9),
+                                    color: context.onPrimary.withOpacity(0.9),
                                   ),
                                   title: Text(
                                     chat['title'] ?? 'Untitled Chat',
-                                    style: const TextStyle(color: Colors.white),
+                                    style: TextStyle(color: context.onPrimary),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   subtitle: Text(
                                     DateFormat.yMMMd().add_jm().format(timestamp),
                                     style: TextStyle(
-                                      color: Colors.white70,
+                                      color: context.onPrimary.withValues(alpha: 0.7),
                                       fontSize: 12,
                                     ),
                                   ),
@@ -1871,7 +1872,7 @@ class _ChatBotState extends State<ChatBot> {
                                       IconButton(
                                         icon: Icon(
                                           Icons.edit,
-                                          color: Colors.white.withOpacity(0.9),
+                                          color: context.onPrimary.withOpacity(0.9),
                                           size: 20,
                                         ),
                                         onPressed: () {
@@ -1881,7 +1882,7 @@ class _ChatBotState extends State<ChatBot> {
                                       IconButton(
                                         icon: Icon(
                                           Icons.delete,
-                                          color: Colors.white.withOpacity(0.9),
+                                          color: context.onPrimary.withOpacity(0.9),
                                           size: 20,
                                         ),
                                         onPressed: () {

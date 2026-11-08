@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../auth/presentation/cubits/auth_cubit.dart';
+import '../../../themes/app_colors.dart';
 
 class DeleteAccountDialog extends StatelessWidget {
   final FirebaseFirestore firestore;
@@ -36,12 +37,12 @@ class DeleteAccountDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Are you sure you want to delete your account?',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: Colors.black87,
+              color: context.textPrimary,
             ),
           ),
           const SizedBox(height: 12),
@@ -49,14 +50,14 @@ class DeleteAccountDialog extends StatelessWidget {
             'This action cannot be undone. All your data including:',
             style: TextStyle(
               fontSize: 14,
-              color: Colors.grey[700],
+              color: context.textSecondary,
             ),
           ),
           const SizedBox(height: 8),
-          _buildWarningItem('Chat history'),
-          _buildWarningItem('Journal entries'),
-          _buildWarningItem('Mood tracking data'),
-          _buildWarningItem('Profile information'),
+          _buildWarningItem(context, 'Chat history'),
+          _buildWarningItem(context, 'Journal entries'),
+          _buildWarningItem(context, 'Mood tracking data'),
+          _buildWarningItem(context, 'Profile information'),
           const SizedBox(height: 12),
           const Text(
             'will be permanently deleted.',
@@ -73,7 +74,7 @@ class DeleteAccountDialog extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
           child: Text(
             'Cancel',
-            style: TextStyle(color: Colors.grey[600]),
+            style: TextStyle(color: context.textMuted),
           ),
         ),
         TextButton(
@@ -90,7 +91,7 @@ class DeleteAccountDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildWarningItem(String text) {
+  Widget _buildWarningItem(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.only(left: 8, bottom: 4),
       child: Row(
@@ -99,7 +100,7 @@ class DeleteAccountDialog extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             text,
-            style: const TextStyle(fontSize: 13, color: Colors.grey),
+            style: TextStyle(fontSize: 13, color: context.textFaint),
           ),
         ],
       ),

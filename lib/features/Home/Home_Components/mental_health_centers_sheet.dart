@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'bottom_sheet_handle.dart';
+import '../../../themes/app_colors.dart';
 
 class MentalHealthCentersSheet extends StatelessWidget {
   final Color primaryColor;
@@ -63,7 +64,7 @@ class MentalHealthCentersSheet extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Professional help in Zambia',
-              style: TextStyle(color: Colors.grey[600]),
+              style: TextStyle(color: context.textMuted),
             ),
             const SizedBox(height: 24),
             Expanded(
@@ -76,31 +77,31 @@ class MentalHealthCentersSheet extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 16),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: context.cardColor,
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey[200]!),
+                      border: Border.all(color: context.divider),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           center['name'] as String,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                            color: context.textPrimary,
                           ),
                         ),
                         const SizedBox(height: 8),
                         Row(
                           children: [
-                            Icon(Icons.location_on, size: 16, color: Colors.grey[600]),
+                            Icon(Icons.location_on, size: 16, color: context.textMuted),
                             const SizedBox(width: 4),
                             Text(
                               center['location'] as String,
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.grey[700],
+                                color: context.textSecondary,
                               ),
                             ),
                           ],
@@ -108,7 +109,7 @@ class MentalHealthCentersSheet extends StatelessWidget {
                         const SizedBox(height: 4),
                         Row(
                           children: [
-                            Icon(Icons.phone, size: 16, color: Colors.grey[600]),
+                            Icon(Icons.phone, size: 16, color: context.textMuted),
                             const SizedBox(width: 4),
                             Text(
                               center['phone'] as String,

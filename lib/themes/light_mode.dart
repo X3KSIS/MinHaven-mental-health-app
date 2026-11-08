@@ -10,6 +10,12 @@ ThemeData lightMode = ThemeData(
   ),
   scaffoldBackgroundColor: Colors.white, // Lighter for shadow contrast
   iconTheme: const IconThemeData(color: Colors.black), // Ensure Drawer icons are visible
+  // AppBars use `primary` as background, so their icons use `onPrimary`
+  appBarTheme: const AppBarTheme(
+    foregroundColor: Colors.white,
+    iconTheme: IconThemeData(color: Colors.white),
+    actionsIconTheme: IconThemeData(color: Colors.white),
+  ),
 );
 
 /*

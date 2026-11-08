@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../auth/presentation/cubits/auth_cubit.dart';
 import '../../themes/theme_cubit.dart';
+import '../../themes/app_colors.dart';
 
 // Settings Service Class
 class SettingsService {
@@ -135,7 +136,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: Colors.black87,
+                color: context.textPrimary,
               ),
             ),
             SizedBox(height: 12),
@@ -143,7 +144,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               'MindHaven is your compassionate mental health companion, designed to provide support, guidance, and a safe space for students.',
               style: TextStyle(
                 fontSize: 14,
-                color: Colors.grey[700],
+                color: context.textSecondary,
                 height: 1.5,
               ),
             ),
@@ -153,7 +154,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey[600],
+                color: context.textMuted,
               ),
             ),
             SizedBox(height: 8),
@@ -161,7 +162,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               '© 2025 MindHaven. All rights reserved.',
               style: TextStyle(
                 fontSize: 12,
-                color: Colors.grey[500],
+                color: context.textFaint,
               ),
             ),
           ],
@@ -215,7 +216,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onPressed: () => Navigator.pop(context),
             child: Text(
               'Cancel',
-              style: TextStyle(color: Colors.grey[600]),
+              style: TextStyle(color: context.textMuted),
             ),
           ),
         ],
@@ -253,7 +254,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: Colors.black87,
+                color: context.textPrimary,
               ),
             ),
             SizedBox(height: 12),
@@ -261,7 +262,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               'This action cannot be undone. All your data including:',
               style: TextStyle(
                 fontSize: 14,
-                color: Colors.grey[700],
+                color: context.textSecondary,
               ),
             ),
             SizedBox(height: 8),
@@ -285,7 +286,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onPressed: () => Navigator.pop(context),
             child: Text(
               'Cancel',
-              style: TextStyle(color: Colors.grey[600]),
+              style: TextStyle(color: context.textMuted),
             ),
           ),
           TextButton(
@@ -342,7 +343,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           SizedBox(width: 8),
           Text(
             text,
-            style: TextStyle(fontSize: 13, color: Colors.grey[700]),
+            style: TextStyle(fontSize: 13, color: context.textSecondary),
           ),
         ],
       ),
@@ -386,14 +387,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         content: Text(
           '$message This action cannot be undone.',
-          style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+          style: TextStyle(fontSize: 14, color: context.textSecondary),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
               'Cancel',
-              style: TextStyle(color: Colors.grey[600]),
+              style: TextStyle(color: context.textMuted),
             ),
           ),
           TextButton(
@@ -436,7 +437,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final primaryColor = theme.colorScheme.primary;
     if (_isLoading) {
       return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.background,
         appBar: AppBar(
           title: Text(
             'Settings',
@@ -456,7 +457,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       );
     }
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: context.pageBackground,
       appBar: AppBar(
         title: Text(
           'Settings',
@@ -495,7 +496,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: (value) => _updateSetting('dailyReminders', value),
             ),
           ),
-          Divider(height: 32, thickness: 8, color: Colors.grey[200]),
+          Divider(height: 32, thickness: 8, color: context.divider),
           // Appearance Section
           _buildSectionHeader('Appearance', Icons.palette_outlined),
           _buildSettingTile(
@@ -525,10 +526,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             icon: Icons.language,
             title: 'Language',
             subtitle: _settings['language'] ?? 'English',
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
             onTap: _showLanguageDialog,
           ),
-          Divider(height: 32, thickness: 8, color: Colors.grey[200]),
+          Divider(height: 32, thickness: 8, color: context.divider),
           // Privacy & Security Section
           _buildSectionHeader('Privacy & Security', Icons.security_outlined),
           _buildSettingTile(
@@ -551,45 +552,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: (value) => _updateSetting('shareAnalytics', value),
             ),
           ),
-          Divider(height: 32, thickness: 8, color: Colors.grey[200]),
+          Divider(height: 32, thickness: 8, color: context.divider),
           // Data Management Section
           _buildSectionHeader('Data Management', Icons.storage_outlined),
           _buildSettingTile(
             icon: Icons.chat,
             title: 'Clear Chat History',
             subtitle: 'Delete all chat conversations',
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
             onTap: () => _showClearDataDialog('chats'),
           ),
           _buildSettingTile(
             icon: Icons.book,
             title: 'Clear Journal Entries',
             subtitle: 'Delete all journal entries',
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
             onTap: () => _showClearDataDialog('journal'),
           ),
           _buildSettingTile(
             icon: Icons.mood,
             title: 'Clear Mood Data',
             subtitle: 'Delete all mood tracking data',
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
             onTap: () => _showClearDataDialog('moods'),
           ),
-          Divider(height: 32, thickness: 8, color: Colors.grey[200]),
+          Divider(height: 32, thickness: 8, color: context.divider),
           // Support Section
           _buildSectionHeader('Support', Icons.help_outline),
           _buildSettingTile(
             icon: Icons.info_outline,
             title: 'About',
             subtitle: 'App version and information',
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
             onTap: _showAboutDialog,
           ),
           _buildSettingTile(
             icon: Icons.privacy_tip_outlined,
             title: 'Privacy Policy',
             subtitle: 'How we protect your data',
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Privacy Policy page coming soon')),
@@ -600,14 +601,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             icon: Icons.description_outlined,
             title: 'Terms of Service',
             subtitle: 'App usage terms',
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Terms of Service page coming soon')),
               );
             },
           ),
-          Divider(height: 32, thickness: 8, color: Colors.grey[200]),
+          Divider(height: 32, thickness: 8, color: context.divider),
           // Danger Zone
           _buildSectionHeader('Danger Zone', Icons.warning_outlined, color: Colors.red),
           _buildSettingTile(
@@ -629,14 +630,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       padding: EdgeInsets.fromLTRB(24, 8, 24, 12),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: color ?? Colors.grey[700]),
+          Icon(icon, size: 20, color: color ?? context.textSecondary),
           SizedBox(width: 8),
           Text(
             title,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: color ?? Colors.grey[700],
+              color: color ?? context.textSecondary,
               letterSpacing: 0.5,
             ),
           ),
@@ -656,7 +657,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
@@ -674,14 +675,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: titleColor ?? Colors.black87,
+            color: titleColor ?? context.textPrimary,
           ),
         ),
         subtitle: Text(
           subtitle,
           style: TextStyle(
             fontSize: 13,
-            color: Colors.grey[600],
+            color: context.textMuted,
           ),
         ),
         trailing: trailing,

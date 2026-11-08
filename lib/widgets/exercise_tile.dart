@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../themes/app_colors.dart';
 class ExerciseTile extends StatelessWidget {
   final icon;
   final String exerciseName;
@@ -23,7 +24,7 @@ class ExerciseTile extends StatelessWidget {
 
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: context.cardColor,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Row(

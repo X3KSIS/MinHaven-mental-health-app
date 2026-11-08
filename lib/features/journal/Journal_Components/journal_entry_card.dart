@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../data/model/journal_model.dart';
+import '../../../themes/app_colors.dart';
 
 class JournalEntryCard extends StatelessWidget {
   final JournalEntry entry;
@@ -39,10 +40,10 @@ class JournalEntryCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       entry.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                        color: context.textPrimary,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -68,7 +69,7 @@ class JournalEntryCard extends StatelessWidget {
                     ),
                   const SizedBox(width: 8),
                   PopupMenuButton(
-                    icon: Icon(Icons.more_vert, color: Colors.grey[600]),
+                    icon: Icon(Icons.more_vert, color: context.textMuted),
                     itemBuilder: (context) => [
                       PopupMenuItem(
                         child: const Row(
@@ -99,7 +100,7 @@ class JournalEntryCard extends StatelessWidget {
                 entry.content,
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.grey[700],
+                  color: context.textSecondary,
                   height: 1.4,
                 ),
                 maxLines: 3,
@@ -108,13 +109,13 @@ class JournalEntryCard extends StatelessWidget {
               const SizedBox(height: 12),
               Row(
                 children: [
-                  Icon(Icons.calendar_today, size: 14, color: Colors.grey[500]),
+                  Icon(Icons.calendar_today, size: 14, color: context.textFaint),
                   const SizedBox(width: 4),
                   Text(
                     DateFormat('MMM dd, yyyy • hh:mm a').format(entry.updatedAt),
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey[500],
+                      color: context.textFaint,
                     ),
                   ),
                 ],

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class ResourceCard extends StatelessWidget {
   final IconData icon;
@@ -23,9 +24,9 @@ class ResourceCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.cardColor,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.grey[200]!),
+          border: Border.all(color: context.divider),
         ),
         child: Row(
           children: [
@@ -44,10 +45,10 @@ class ResourceCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                      color: context.textPrimary,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -55,13 +56,13 @@ class ResourceCard extends StatelessWidget {
                     subtitle,
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey[600],
+                      color: context.textMuted,
                     ),
                   ),
                 ],
               ),
             ),
-            Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+            Icon(Icons.arrow_forward_ios, size: 16, color: context.textHint),
           ],
         ),
       ),

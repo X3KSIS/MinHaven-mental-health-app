@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class AIInsightsWidget extends StatelessWidget {
   final String insight;
@@ -60,10 +61,10 @@ class AIInsightsWidget extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             insight,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               height: 1.5,
-              color: Colors.black87,
+              color: context.textPrimary,
             ),
           ),
         ],

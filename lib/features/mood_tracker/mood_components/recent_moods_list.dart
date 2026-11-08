@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../data/model/mood_entry.dart';
 import '../utils/mood_utils.dart';
+import '../../../themes/app_colors.dart';
 
 class RecentMoodsList extends StatelessWidget {
   final List<MoodEntryData> moods;
@@ -17,7 +18,7 @@ class RecentMoodsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -46,7 +47,7 @@ class RecentMoodsList extends StatelessWidget {
                   '${moods.length} total',
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.grey[600],
+                    color: context.textMuted,
                   ),
                 ),
               ],
@@ -58,7 +59,7 @@ class RecentMoodsList extends StatelessWidget {
             itemCount: moods.length,
             separatorBuilder: (context, index) => Divider(
               height: 1,
-              color: Colors.grey[200],
+              color: context.divider,
             ),
             itemBuilder: (context, index) {
               final mood = moods[index];
@@ -105,7 +106,7 @@ class RecentMoodsList extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: mood.note.isEmpty ? Colors.grey[400] : Colors.grey[700],
+                    color: mood.note.isEmpty ? context.textHint : context.textSecondary,
                     fontStyle: mood.note.isEmpty ? FontStyle.italic : FontStyle.normal,
                   ),
                 ),

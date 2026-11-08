@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class AboutDialog extends StatelessWidget {
   final Color primaryColor;
@@ -27,12 +28,12 @@ class AboutDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Version 1.0.0',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: Colors.black87,
+              color: context.textPrimary,
             ),
           ),
           const SizedBox(height: 12),
@@ -40,7 +41,7 @@ class AboutDialog extends StatelessWidget {
             'MindHaven is your compassionate mental health companion, designed to provide support, guidance, and a safe space for students.',
             style: TextStyle(
               fontSize: 14,
-              color: Colors.grey[700],
+              color: context.textSecondary,
               height: 1.5,
             ),
           ),
@@ -50,7 +51,7 @@ class AboutDialog extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
+              color: context.textMuted,
             ),
           ),
           const SizedBox(height: 8),
@@ -58,7 +59,7 @@ class AboutDialog extends StatelessWidget {
             '© 2025 MindHaven. All rights reserved.',
             style: TextStyle(
               fontSize: 12,
-              color: Colors.grey[500],
+              color: context.textFaint,
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class SettingsTile extends StatelessWidget {
   final IconData icon;
@@ -23,7 +24,7 @@ class SettingsTile extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: ListTile(
@@ -41,14 +42,14 @@ class SettingsTile extends StatelessWidget {
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w600,
-            color: titleColor ?? Colors.black87,
+            color: titleColor ?? context.textPrimary,
           ),
         ),
         subtitle: Text(
           subtitle,
           style: TextStyle(
             fontSize: 13,
-            color: Colors.grey[600],
+            color: context.textMuted,
           ),
         ),
         trailing: trailing,

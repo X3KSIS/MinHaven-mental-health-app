@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class SettingsSectionHeader extends StatelessWidget {
   final String title;
@@ -18,14 +19,14 @@ class SettingsSectionHeader extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(24, 8, 24, 12),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: color ?? Colors.grey[700]),
+          Icon(icon, size: 20, color: color ?? context.textSecondary),
           const SizedBox(width: 8),
           Text(
             title,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: color ?? Colors.grey[700],
+              color: color ?? context.textSecondary,
               letterSpacing: 0.5,
             ),
           ),

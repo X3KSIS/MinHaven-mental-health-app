@@ -8,6 +8,7 @@ import 'package:mental_health_app/features/profile/profile_components/profile_he
 import 'package:mental_health_app/features/profile/profile_components/profile_info_card.dart';
 import '../auth/presentation/cubits/auth_cubit.dart';
 import 'data/services/profile_service.dart';
+import '../../themes/app_colors.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -147,7 +148,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final primaryColor = theme.colorScheme.primary;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.background,
       appBar: AppBar(
         title: Text(
           'Profile',
@@ -279,7 +280,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  side: BorderSide(color: Colors.grey[400]!),
+                  side: BorderSide(color: context.textHint),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -287,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Text(
                   'Cancel',
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: context.textSecondary,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
@@ -306,18 +307,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 child: _isLoading
-                    ? const SizedBox(
+                    ? SizedBox(
                   height: 20,
                   width: 20,
                   child: CircularProgressIndicator(
-                    color: Colors.white,
+                    color: context.onPrimary,
                     strokeWidth: 2,
                   ),
                 )
-                    : const Text(
+                    : Text(
                   'Save Changes',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: context.onPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),

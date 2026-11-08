@@ -12,6 +12,7 @@ import 'mood_components/mood_dialog.dart';
 import 'mood_components/mood_stats_cards.dart';
 import 'mood_components/recent_moods_list.dart';
 import 'mood_components/weekly_report_card.dart';
+import '../../themes/app_colors.dart';
 
 class MoodDashboard extends StatefulWidget {
   const MoodDashboard({super.key});
@@ -185,7 +186,7 @@ class _MoodDashboardState extends State<MoodDashboard> {
                             dateRange,
                             style: TextStyle(
                               fontSize: 12,
-                              color: Colors.grey[600],
+                              color: context.textMuted,
                             ),
                           ),
                         ],
@@ -255,7 +256,7 @@ class _MoodDashboardState extends State<MoodDashboard> {
             label,
             style: TextStyle(
               fontSize: 10,
-              color: Colors.grey[600],
+              color: context.textMuted,
             ),
           ),
         ],
@@ -422,12 +423,12 @@ class _MoodDashboardState extends State<MoodDashboard> {
           if (_moods.isNotEmpty)
             IconButton(
               icon: _isGeneratingReport
-                  ? const SizedBox(
+                  ? SizedBox(
                 width: 20,
                 height: 20,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Colors.white,
+                  color: context.onPrimary,
                 ),
               )
                   : const Icon(Icons.summarize),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String name;
@@ -44,7 +45,7 @@ class ProfileHeader extends StatelessWidget {
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   radius: 56,
-                  backgroundColor: Colors.grey[200],
+                  backgroundColor: context.divider,
                   backgroundImage: profilePictureUrl != null
                       ? NetworkImage(profilePictureUrl!)
                       : null,
@@ -52,7 +53,7 @@ class ProfileHeader extends StatelessWidget {
                       ? Icon(
                     Icons.person,
                     size: 50,
-                    color: Colors.grey[400],
+                    color: context.textHint,
                   )
                       : null,
                 ),
@@ -76,7 +77,7 @@ class ProfileHeader extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: context.onPrimary,
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
@@ -99,10 +100,10 @@ class ProfileHeader extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             name,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: context.onPrimary,
             ),
           ),
           const SizedBox(height: 4),
@@ -110,7 +111,7 @@ class ProfileHeader extends StatelessWidget {
             email,
             style: TextStyle(
               fontSize: 14,
-              color: Colors.white70,
+              color: context.onPrimary.withValues(alpha: 0.7),
             ),
           ),
           const SizedBox(height: 30),

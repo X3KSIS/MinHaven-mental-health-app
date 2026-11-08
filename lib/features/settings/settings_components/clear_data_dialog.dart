@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../utils/settings_constants.dart';
+import '../../../themes/app_colors.dart';
 
 class ClearDataDialog extends StatelessWidget {
   final FirebaseFirestore firestore;
@@ -21,22 +22,22 @@ class ClearDataDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       title: Text(
         info['title']!,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: Colors.black87,
+          color: context.textPrimary,
         ),
       ),
       content: Text(
         '${info['message']} This action cannot be undone.',
-        style: const TextStyle(fontSize: 14, color: Colors.grey),
+        style: TextStyle(fontSize: 14, color: context.textFaint),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(
             'Cancel',
-            style: TextStyle(color: Colors.grey[600]),
+            style: TextStyle(color: context.textMuted),
           ),
         ),
         TextButton(

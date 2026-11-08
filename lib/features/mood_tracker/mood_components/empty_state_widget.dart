@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class EmptyStateWidget extends StatelessWidget {
   final Color primaryColor;
@@ -37,7 +38,7 @@ class EmptyStateWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.grey[600],
+                color: context.textMuted,
               ),
             ),
             const SizedBox(height: 32),

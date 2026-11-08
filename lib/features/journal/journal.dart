@@ -7,6 +7,7 @@ import 'Journal_Components/journal_entry_card.dart';
 import 'Journal_Components/search_filter.dart';
 import 'data/model/journal_model.dart';
 import '../gamification/data/services/gamification_service.dart';
+import '../../themes/app_colors.dart';
 
 // Journal Service Class
 class JournalService {
@@ -120,7 +121,7 @@ class _JournalScreenState extends State<JournalScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Cancel', style: TextStyle(color: Colors.grey[600])),
+            child: Text('Cancel', style: TextStyle(color: context.textMuted)),
           ),
           TextButton(
             onPressed: () async {
@@ -165,7 +166,7 @@ class _JournalScreenState extends State<JournalScreen> {
     final primaryColor = theme.colorScheme.primary;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.background,
       appBar: AppBar(
         title: Text(
           'My Journal',
@@ -202,7 +203,7 @@ class _JournalScreenState extends State<JournalScreen> {
                   return Center(
                     child: Text(
                       'Error loading journal entries',
-                      style: TextStyle(color: Colors.grey[600]),
+                      style: TextStyle(color: context.textMuted),
                     ),
                   );
                 }
@@ -236,10 +237,10 @@ class _JournalScreenState extends State<JournalScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _navigateToEditor(),
         backgroundColor: primaryColor,
-        icon: const Icon(Icons.add, color: Colors.white),
-        label: const Text(
+        icon: Icon(Icons.add, color: context.onPrimary),
+        label: Text(
           'New Entry',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+          style: TextStyle(color: context.onPrimary, fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -253,23 +254,23 @@ class _JournalScreenState extends State<JournalScreen> {
           Icon(
             Icons.book_outlined,
             size: 80,
-            color: Colors.grey[400],
+            color: context.textHint,
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'No journal entries found',
             style: TextStyle(
               fontSize: 18,
-              color: Color(0xFF757575),
+              color: context.textMuted,
               fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Try adjusting your search or filter',
             style: TextStyle(
               fontSize: 14,
-              color: Color(0xFF9E9E9E),
+              color: context.textFaint,
             ),
           ),
         ],
@@ -362,7 +363,7 @@ class _JournalEditorScreenState extends State<JournalEditorScreen> {
     final primaryColor = theme.colorScheme.primary;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.background,
       appBar: AppBar(
         title: Text(
           widget.entry != null ? 'Edit Entry' : 'New Entry',
@@ -384,7 +385,7 @@ class _JournalEditorScreenState extends State<JournalEditorScreen> {
                   width: 20,
                   height: 20,
                   child: CircularProgressIndicator(
-                    color: Colors.white,
+                    color: context.onPrimary,
                     strokeWidth: 2,
                   ),
                 ),
@@ -404,23 +405,23 @@ class _JournalEditorScreenState extends State<JournalEditorScreen> {
           children: [
             TextField(
               controller: _titleController,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: context.textPrimary,
               ),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Entry Title',
-                hintStyle: TextStyle(color: Color(0xFF9E9E9E)),
+                hintStyle: TextStyle(color: context.textFaint),
                 border: InputBorder.none,
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'How are you feeling?',
               style: TextStyle(
                 fontSize: 14,
-                color: Color(0xFF757575),
+                color: context.textMuted,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -440,9 +441,9 @@ class _JournalEditorScreenState extends State<JournalEditorScreen> {
                   },
                   selectedColor: primaryColor.withValues(alpha: 0.2),
                   checkmarkColor: primaryColor,
-                  backgroundColor: Colors.grey[100],
+                  backgroundColor: context.subtleFill,
                   labelStyle: TextStyle(
-                    color: isSelected ? primaryColor : Colors.black87,
+                    color: isSelected ? primaryColor : context.textPrimary,
                   ),
                 );
               }).toList(),
@@ -450,19 +451,19 @@ class _JournalEditorScreenState extends State<JournalEditorScreen> {
             const SizedBox(height: 24),
             TextField(
               controller: _contentController,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
-                color: Colors.black87,
+                color: context.textPrimary,
                 height: 1.5,
               ),
               maxLines: null,
               minLines: 15,
               decoration: InputDecoration(
                 hintText: 'Write your thoughts here...',
-                hintStyle: TextStyle(color: Colors.grey[400]),
+                hintStyle: TextStyle(color: context.textHint),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
+                  borderSide: BorderSide(color: context.borderStrong),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),

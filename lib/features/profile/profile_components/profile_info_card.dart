@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class ProfileInfoCard extends StatelessWidget {
   final IconData icon;
@@ -24,10 +25,10 @@ class ProfileInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: enabled ? primaryColor.withValues(alpha: 0.3) : Colors.grey[300]!,
+          color: enabled ? primaryColor.withValues(alpha: 0.3) : context.borderStrong,
         ),
         boxShadow: [
           BoxShadow(
@@ -52,7 +53,7 @@ class ProfileInfoCard extends StatelessWidget {
                     label,
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey[600],
+                      color: context.textMuted,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -62,9 +63,9 @@ class ProfileInfoCard extends StatelessWidget {
                     enabled: enabled,
                     maxLines: maxLines,
                     keyboardType: keyboardType,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
-                      color: Colors.black87,
+                      color: context.textPrimary,
                       fontWeight: FontWeight.w500,
                     ),
                     decoration: InputDecoration(
@@ -72,7 +73,7 @@ class ProfileInfoCard extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       border: InputBorder.none,
                       hintText: 'Not set',
-                      hintStyle: TextStyle(color: Colors.grey[400]),
+                      hintStyle: TextStyle(color: context.textHint),
                     ),
                   ),
                 ],

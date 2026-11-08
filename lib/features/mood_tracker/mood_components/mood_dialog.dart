@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/mood_utils.dart';
+import '../../../themes/app_colors.dart';
 
 class MoodDialog extends StatefulWidget {
   final Function(int, String?) onLogMood;
@@ -30,7 +31,7 @@ class _MoodDialogState extends State<MoodDialog> {
               'How are you feeling right now?',
               style: TextStyle(
                 fontSize: 14,
-                color: Colors.grey[600],
+                color: context.textMuted,
               ),
             ),
             const SizedBox(height: 20),

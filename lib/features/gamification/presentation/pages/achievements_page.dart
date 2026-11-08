@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../data/models/achievement_model.dart';
 import '../../data/services/gamification_service.dart';
+import '../../../../themes/app_colors.dart';
 
 class AchievementsPage extends StatelessWidget {
   const AchievementsPage({super.key});
@@ -20,7 +21,7 @@ class AchievementsPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: context.pageBackground,
       appBar: AppBar(
         title: const Text(
           'Achievements',
@@ -57,17 +58,17 @@ class AchievementsPage extends StatelessWidget {
                       const SizedBox(height: 16),
                       Text(
                         '$unlockedCount / 33',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: context.onPrimary,
                         ),
                       ),
-                      const Text(
+                      Text(
                         'Achievements Unlocked',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white70,
+                          color: context.onPrimary.withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -78,42 +79,42 @@ class AchievementsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
-                    _buildCategorySection(
+                    _buildCategorySection(context, 
                       'Mood Tracking',
                       AchievementCategory.mood,
                       userAchievements,
                       Colors.blue,
                     ),
                     const SizedBox(height: 24),
-                    _buildCategorySection(
+                    _buildCategorySection(context, 
                       'Journaling',
                       AchievementCategory.journal,
                       userAchievements,
                       Colors.purple,
                     ),
                     const SizedBox(height: 24),
-                    _buildCategorySection(
+                    _buildCategorySection(context, 
                       'Chat Engagement',
                       AchievementCategory.chat,
                       userAchievements,
                       Colors.green,
                     ),
                     const SizedBox(height: 24),
-                    _buildCategorySection(
+                    _buildCategorySection(context, 
                       'Wellness',
                       AchievementCategory.wellness,
                       userAchievements,
                       Colors.teal,
                     ),
                     const SizedBox(height: 24),
-                    _buildCategorySection(
+                    _buildCategorySection(context, 
                       'Streaks',
                       AchievementCategory.streak,
                       userAchievements,
                       Colors.orange,
                     ),
                     const SizedBox(height: 24),
-                    _buildCategorySection(
+                    _buildCategorySection(context, 
                       'Special',
                       AchievementCategory.special,
                       userAchievements,
@@ -129,7 +130,7 @@ class AchievementsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCategorySection(
+  Widget _buildCategorySection(BuildContext context, 
     String title,
     AchievementCategory category,
     List<Achievement> userAchievements,
@@ -157,10 +158,10 @@ class AchievementsPage extends StatelessWidget {
             const SizedBox(width: 12),
             Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: context.textPrimary,
               ),
             ),
           ],
@@ -168,23 +169,23 @@ class AchievementsPage extends StatelessWidget {
         const SizedBox(height: 16),
         ...categoryAchievements.map((achievement) => Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: _buildAchievementCard(achievement, color),
+          child: _buildAchievementCard(context, achievement, color),
         )),
       ],
     );
   }
 
-  Widget _buildAchievementCard(Achievement achievement, Color categoryColor) {
+  Widget _buildAchievementCard(BuildContext context, Achievement achievement, Color categoryColor) {
     final isUnlocked = achievement.isUnlocked;
     final progress = achievement.progress / achievement.target;
 
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: isUnlocked ? categoryColor : Colors.grey[300]!,
+          color: isUnlocked ? categoryColor : context.borderStrong,
           width: isUnlocked ? 2 : 1,
         ),
         boxShadow: isUnlocked
@@ -205,7 +206,7 @@ class AchievementsPage extends StatelessWidget {
             decoration: BoxDecoration(
               color: isUnlocked
                   ? categoryColor.withOpacity(0.1)
-                  : Colors.grey[200],
+                  : context.divider,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
@@ -231,7 +232,7 @@ class AchievementsPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: isUnlocked ? Colors.black87 : Colors.grey[600],
+                          color: isUnlocked ? context.textPrimary : context.textMuted,
                         ),
                       ),
                     ),
@@ -258,7 +259,7 @@ class AchievementsPage extends StatelessWidget {
                   achievement.description,
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.grey[600],
+                    color: context.textMuted,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -270,7 +271,7 @@ class AchievementsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(4),
                           child: LinearProgressIndicator(
                             value: progress,
-                            backgroundColor: Colors.grey[200],
+                            backgroundColor: context.divider,
                             valueColor: AlwaysStoppedAnimation<Color>(categoryColor),
                             minHeight: 6,
                           ),
@@ -281,7 +282,7 @@ class AchievementsPage extends StatelessWidget {
                         '${achievement.progress}/${achievement.target}',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.grey[600],
+                          color: context.textMuted,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -305,7 +306,7 @@ class AchievementsPage extends StatelessWidget {
                         '+${achievement.points} points',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.grey[600],
+                          color: context.textMuted,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

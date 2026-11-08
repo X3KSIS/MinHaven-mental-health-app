@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'bottom_sheet_handle.dart';
+import '../../../themes/app_colors.dart';
 
 
 class SelfCareTipsSheet extends StatelessWidget {
@@ -45,7 +46,7 @@ class SelfCareTipsSheet extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Small steps toward better mental health',
-              style: TextStyle(color: Colors.grey[600]),
+              style: TextStyle(color: context.textMuted),
             ),
             const SizedBox(height: 24),
             Expanded(
@@ -58,9 +59,9 @@ class SelfCareTipsSheet extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: context.cardColor,
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey[200]!),
+                      border: Border.all(color: context.divider),
                     ),
                     child: Row(
                       children: [
@@ -83,10 +84,10 @@ class SelfCareTipsSheet extends StatelessWidget {
                             children: [
                               Text(
                                 tip['title'] as String,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.black87,
+                                  color: context.textPrimary,
                                 ),
                               ),
                               const SizedBox(height: 4),
@@ -94,7 +95,7 @@ class SelfCareTipsSheet extends StatelessWidget {
                                 tip['desc'] as String,
                                 style: TextStyle(
                                   fontSize: 13,
-                                  color: Colors.grey[600],
+                                  color: context.textMuted,
                                 ),
                               ),
                             ],

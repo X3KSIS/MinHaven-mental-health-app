@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../data/models/user_gamification_profile.dart';
 import '../../data/models/streak_model.dart';
+import '../../../../themes/app_colors.dart';
 
 class GamificationStatsWidget extends StatelessWidget {
   final UserGamificationProfile profile;
@@ -45,17 +46,17 @@ class GamificationStatsWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Level ${profile.currentLevel}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: context.onPrimary,
                     ),
                   ),
                   Text(
                     profile.levelTitle,
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.white.withOpacity(0.9),
+                      color: context.onPrimary.withOpacity(0.9),
                     ),
                   ),
                 ],
@@ -63,7 +64,7 @@ class GamificationStatsWidget extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: context.onPrimary.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -72,10 +73,10 @@ class GamificationStatsWidget extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(
                       '${profile.totalPoints}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: context.onPrimary,
                       ),
                     ),
                   ],
@@ -94,14 +95,14 @@ class GamificationStatsWidget extends StatelessWidget {
                     'Progress to Level ${profile.currentLevel + 1}',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.white.withOpacity(0.9),
+                      color: context.onPrimary.withOpacity(0.9),
                     ),
                   ),
                   Text(
                     '${profile.pointsInCurrentLevel}/${profile.pointsRequiredForCurrentLevel}',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.white.withOpacity(0.9),
+                      color: context.onPrimary.withOpacity(0.9),
                     ),
                   ),
                 ],
@@ -111,7 +112,7 @@ class GamificationStatsWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: LinearProgressIndicator(
                   value: profile.levelProgress,
-                  backgroundColor: Colors.white.withOpacity(0.3),
+                  backgroundColor: context.onPrimary.withOpacity(0.3),
                   valueColor: const AlwaysStoppedAnimation<Color>(Colors.amber),
                   minHeight: 8,
                 ),
@@ -122,22 +123,22 @@ class GamificationStatsWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildStreakIndicator(
+              _buildStreakIndicator(context, 
                 '🔥',
                 streaks[StreakType.overall] ?? 0,
                 'Day Streak',
               ),
-              _buildStreakIndicator(
+              _buildStreakIndicator(context, 
                 '😊',
                 streaks[StreakType.mood] ?? 0,
                 'Mood',
               ),
-              _buildStreakIndicator(
+              _buildStreakIndicator(context, 
                 '📝',
                 streaks[StreakType.journal] ?? 0,
                 'Journal',
               ),
-              _buildStreakIndicator(
+              _buildStreakIndicator(context, 
                 '💬',
                 streaks[StreakType.chat] ?? 0,
                 'Chat',
@@ -149,7 +150,7 @@ class GamificationStatsWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStreakIndicator(String emoji, int count, String label) {
+  Widget _buildStreakIndicator(BuildContext context, String emoji, int count, String label) {
     return Column(
       children: [
         Text(
@@ -159,17 +160,17 @@ class GamificationStatsWidget extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           '$count',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: context.onPrimary,
           ),
         ),
         Text(
           label,
           style: TextStyle(
             fontSize: 10,
-            color: Colors.white.withOpacity(0.8),
+            color: context.onPrimary.withOpacity(0.8),
           ),
         ),
       ],

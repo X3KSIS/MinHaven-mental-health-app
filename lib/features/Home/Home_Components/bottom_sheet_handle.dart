@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../themes/app_colors.dart';
 
 class BottomSheetHandle extends StatelessWidget {
   const BottomSheetHandle({super.key});
@@ -10,7 +11,7 @@ class BottomSheetHandle extends StatelessWidget {
         width: 40,
         height: 4,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: context.borderStrong,
           borderRadius: BorderRadius.circular(2),
         ),
       ),

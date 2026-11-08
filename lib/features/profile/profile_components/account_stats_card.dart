@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/profile_utils.dart';
+import '../../../themes/app_colors.dart';
 
 class AccountStatsCard extends StatelessWidget {
   final Map<String, dynamic> profile;
@@ -35,12 +36,12 @@ class AccountStatsCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          _buildStatRow(
+          _buildStatRow(context, 
             'Member since',
             ProfileUtils.formatDate(profile['createdAt']),
           ),
           const Divider(height: 16),
-          _buildStatRow(
+          _buildStatRow(context, 
             'Last updated',
             ProfileUtils.formatDate(profile['updatedAt']),
           ),
@@ -49,7 +50,7 @@ class AccountStatsCard extends StatelessWidget {
     );
   }
 
-  Widget _buildStatRow(String label, String value) {
+  Widget _buildStatRow(BuildContext context, String label, String value) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -57,15 +58,15 @@ class AccountStatsCard extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: 14,
-            color: Colors.grey[600],
+            color: context.textMuted,
           ),
         ),
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: Colors.black87,
+            color: context.textPrimary,
           ),
         ),
       ],

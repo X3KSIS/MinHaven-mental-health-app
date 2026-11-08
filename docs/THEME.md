@@ -242,4 +242,35 @@ Text(AppWidget.getGreeting(), style: AppWidget.semiCourgetteTextFieldStyle());
 Icon(Icons.circle, color: MoodUtils.getMoodColor(entry.score));
 ```
 
-> 💡 **Tip:** prefer `Theme.of(context).colorScheme` over hard-coded `Colors.black`/`Colors.white` so widgets adapt correctly to dark mode. Some `AppWidget` styles use fixed black or white text and won't switch automatically.
+### Theme-aware neutral colours (`AppColors`)
+
+[`lib/themes/app_colors.dart`](../lib/themes/app_colors.dart) adds a `BuildContext` extension with neutral colours that switch automatically between light and dark mode. **Use these instead of hard-coded `Colors.black87`, `Colors.grey[600]`, `Colors.white`, etc.**
+
+```dart
+import 'package:mental_health_app/themes/app_colors.dart';
+
+Container(
+  color: context.cardColor,
+  child: Text('Title', style: TextStyle(color: context.textPrimary)),
+);
+```
+
+| Token | Light | Dark | Use for |
+|---|---|---|---|
+| `textStrong` | `#000000` | `#FFFFFF` | Strongest text (input text) |
+| `textPrimary` | black 87% | white 87% | Headings, body text |
+| `textSecondary` | `#616161` | `#E0E0E0` | Secondary text |
+| `textMuted` | `#757575` | `#BDBDBD` | Subtitles, captions, icons |
+| `textFaint` | `#9E9E9E` | `#9E9E9E` | Dates, footnotes |
+| `textHint` | `#BDBDBD` | `#757575` | Hints, chevrons, disabled |
+| `onPrimary` | `#FFFFFF` | `#000000` | Content on `primary` backgrounds (headers, FABs, drawer) |
+| `background` | `#FFFFFF` | `#212121` | Page background |
+| `pageBackground` | `#FAFAFA` | `#212121` | Tinted page background |
+| `cardColor` | `#FFFFFF` | `#2C2C2C` | Cards, tiles, dialogs, inputs |
+| `subtleFill` | `#F5F5F5` | `#333333` | Chat bubbles, chips |
+| `divider` | `#EEEEEE` | `#3A3A3A` | Dividers, light borders, progress tracks |
+| `borderStrong` | `#E0E0E0` | `#616161` | Stronger borders, handles |
+
+Light values match the original hard-coded colours, so light mode looks the same as before.
+
+> 💡 **Rule of thumb:** anything placed on a `primary` coloured background (headers, AppBars, FABs, the chat drawer, sent chat bubbles) must use `onPrimary`, never `Colors.white`. In dark mode `primary` is light grey, so white content would be invisible. AppBar icons get this automatically through `appBarTheme` in both theme files.

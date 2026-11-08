@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../data/model/weekly_report.dart';
+import '../../../themes/app_colors.dart';
 
 class WeeklyReportCard extends StatelessWidget {
   final WeeklyReport report;
@@ -67,7 +68,7 @@ class WeeklyReportCard extends StatelessWidget {
                     dateRange,
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey[600],
+                      color: context.textMuted,
                     ),
                   ),
                   if (daysAgo == 0)

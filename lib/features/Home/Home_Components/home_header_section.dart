@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
+import '../../../themes/app_colors.dart';
 
 class HomeHeaderSection extends StatelessWidget {
   final FirebaseFirestore firestore;
@@ -48,10 +49,10 @@ class HomeHeaderSection extends StatelessWidget {
                 final userName = snapshot.data?.get('name') ?? 'Friend';
                 return Text(
                   '${getGreeting()}, $userName!',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: context.onPrimary,
                   ),
                 );
               },
@@ -61,33 +62,33 @@ class HomeHeaderSection extends StatelessWidget {
               DateFormat('EEEE, MMMM d, y').format(DateTime.now()),
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white70,
+                color: context.onPrimary.withValues(alpha: 0.7),
               ),
             ),
             const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
+                color: context.onPrimary.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.3),
+                  color: context.onPrimary.withValues(alpha: 0.3),
                 ),
               ),
               child: Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.favorite,
-                    color: Colors.white,
+                    color: context.onPrimary,
                     size: 24,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
-                    child: const Text(
+                    child: Text(
                       'Remember: Life is precious. Infinitely so. Perhaps it takes a machine intelligence to appreciate that.',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.white,
+                        color: context.onPrimary,
                         height: 1.4,
                       ),
                     ),

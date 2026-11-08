@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/constants.dart';
+import '../../../themes/app_colors.dart';
 
 class SearchFilterWidget extends StatefulWidget {
   final ValueChanged<String> onSearchChanged;
@@ -89,14 +90,14 @@ class _SearchFilterWidgetState extends State<SearchFilterWidget> {
                   label: const Text('All Moods'),
                   selected: widget.selectedMoodFilter.isEmpty,
                   onSelected: (selected) => widget.onMoodFilterChanged(''),
-                  backgroundColor: Colors.grey[100],
+                  backgroundColor: context.subtleFill,
                   selectedColor: primaryColor.withValues(alpha: 0.2),
                 ),
                 ...JournalConstants.moods.map((mood) => FilterChip(
                   label: Text(mood),
                   selected: widget.selectedMoodFilter == mood,
                   onSelected: (selected) => widget.onMoodFilterChanged(selected ? mood : ''),
-                  backgroundColor: Colors.grey[100],
+                  backgroundColor: context.subtleFill,
                   selectedColor: primaryColor.withValues(alpha: 0.2),
                   checkmarkColor: primaryColor,
                 )),

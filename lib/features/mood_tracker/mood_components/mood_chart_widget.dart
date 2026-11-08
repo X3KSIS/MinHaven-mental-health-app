@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../data/model/mood_entry.dart';
 import '../utils/mood_utils.dart';
+import '../../../themes/app_colors.dart';
 
 class MoodChartWidget extends StatelessWidget {
   final List<MoodEntryData> moods;
@@ -23,7 +24,7 @@ class MoodChartWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.cardColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -67,27 +68,27 @@ class MoodChartWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          _buildLegend(),
+          _buildLegend(context),
           const SizedBox(height: 16),
-          _buildBarChart(chartMoods),
+          _buildBarChart(context, chartMoods),
         ],
       ),
     );
   }
 
-  Widget _buildLegend() {
+  Widget _buildLegend(BuildContext context) {
     return Row(
       children: [
-        _buildLegendItem('😢 Low', Colors.red),
+        _buildLegendItem(context, '😢 Low', Colors.red),
         const SizedBox(width: 12),
-        _buildLegendItem('😐 Medium', Colors.amber),
+        _buildLegendItem(context, '😐 Medium', Colors.amber),
         const SizedBox(width: 12),
-        _buildLegendItem('😄 High', Colors.green),
+        _buildLegendItem(context, '😄 High', Colors.green),
       ],
     );
   }
 
-  Widget _buildLegendItem(String label, Color color) {
+  Widget _buildLegendItem(BuildContext context, String label, Color color) {
     return Row(
       children: [
         Container(
@@ -103,14 +104,14 @@ class MoodChartWidget extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: 11,
-            color: Colors.grey[600],
+            color: context.textMuted,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildBarChart(List<MoodEntryData> chartMoods) {
+  Widget _buildBarChart(BuildContext context, List<MoodEntryData> chartMoods) {
     return SizedBox(
       height: 180,
       child: Row(
@@ -166,7 +167,7 @@ class MoodChartWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
-                      color: isToday ? primaryColor : Colors.grey[600],
+                      color: isToday ? primaryColor : context.textMuted,
                     ),
                   ),
                 ],

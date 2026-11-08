@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'bottom_sheet_handle.dart';
 import 'helpline_item.dart';
+import '../../../themes/app_colors.dart';
 
 
 class CrisisHelplinesSheet extends StatelessWidget {
@@ -36,7 +37,7 @@ class CrisisHelplinesSheet extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               'Available 24/7 for immediate support',
-              style: TextStyle(color: Colors.grey[600]),
+              style: TextStyle(color: context.textMuted),
             ),
             const SizedBox(height: 24),
             Expanded(
