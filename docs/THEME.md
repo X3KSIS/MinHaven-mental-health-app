@@ -95,10 +95,24 @@ Dark:   #212121 █ #272727 █ #E0E0E0 ░
 
 ## 3. Light / dark mode switching
 
-- `MaterialApp` sets no `themeMode`, so Flutter uses the default **`ThemeMode.system`**. The app **automatically follows the phone's system setting**: light theme when the device is in light mode, dark theme when it's in dark mode.
-- Settings has a **Dark Mode** toggle that saves a `darkMode` value (default `false`) to the user's settings.
+The theme is controlled by **`ThemeCubit`** ([`lib/themes/theme_cubit.dart`](../lib/themes/theme_cubit.dart)), which `MaterialApp` listens to through a `BlocBuilder`:
 
-> ⚠️ **Known limitation:** the Settings *Dark Mode* toggle currently only saves the preference. It isn't connected to `MaterialApp.themeMode`, so it doesn't change the theme yet. To connect it, read the saved setting (e.g. via a `ThemeCubit`) and pass `themeMode: isDark ? ThemeMode.dark : ThemeMode.light` to `MaterialApp`.
+```dart
+BlocBuilder<ThemeCubit, ThemeMode>(
+  builder: (context, themeMode) => MaterialApp(
+    theme: lightMode,
+    darkTheme: darkMode,
+    themeMode: themeMode,
+    ...
+  ),
+)
+```
+
+How it works:
+1. **Settings → Appearance → Dark Mode** calls `context.read<ThemeCubit>().setDarkMode(value)`, and the whole app switches theme instantly.
+2. The choice is **cached on the device** with `shared_preferences` and loaded before `runApp`, so the correct theme shows from the first frame.
+3. It is also **saved to Firestore** (`users/{uid}/settings/preferences.darkMode`). When a user logs in, their saved preference is applied, so it follows them across devices.
+4. Default is **light mode** until the user turns dark mode on.
 
 ---
 

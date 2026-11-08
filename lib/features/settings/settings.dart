@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../auth/presentation/cubits/auth_cubit.dart';
+import '../../themes/theme_cubit.dart';
 
 // Settings Service Class
 class SettingsService {
@@ -502,9 +503,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: 'Dark Mode',
             subtitle: 'Switch to dark theme',
             trailing: Switch(
-              value: _settings['darkMode'] ?? false,
+              value: context.watch<ThemeCubit>().isDarkMode,
               activeColor: primaryColor,
-              onChanged: (value) => _updateSetting('darkMode', value),
+              onChanged: (value) {
+                context.read<ThemeCubit>().setDarkMode(value);
+                _updateSetting('darkMode', value);
+              },
             ),
           ),
           _buildSettingTile(
