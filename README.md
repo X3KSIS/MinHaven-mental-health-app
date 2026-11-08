@@ -6,22 +6,6 @@ MindHaven is a cross-platform mobile app built with **Flutter** and **Firebase**
 
 ---
 
-## 📸 Screenshots
-
-| Login | Home | AI Chatbot |
-|:---:|:---:|:---:|
-| <img src="screenshots/login.png" width="230"/> | <img src="screenshots/home.png" width="230"/> | <img src="screenshots/chatbot.png" width="230"/> |
-
-| Mood Dashboard | Journal | Achievements |
-|:---:|:---:|:---:|
-| <img src="screenshots/mood_dashboard.png" width="230"/> | <img src="screenshots/journal.png" width="230"/> | <img src="screenshots/achievements.png" width="230"/> |
-
-| Crisis Helplines | Profile | Settings |
-|:---:|:---:|:---:|
-| <img src="screenshots/crisis_helplines.png" width="230"/> | <img src="screenshots/profile.png" width="230"/> | <img src="screenshots/settings.png" width="230"/> |
-
----
-
 ## ✨ Features
 
 ### 🔐 Authentication
