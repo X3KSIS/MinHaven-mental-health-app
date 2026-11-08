@@ -82,6 +82,9 @@ MindHaven is a cross-platform mobile app built with **Flutter** and **Firebase**
 | UI | `google_nav_bar`, `font_awesome_flutter`, `loading_animation_widget` |
 | Testing | `flutter_test`, `mocktail`, `bloc_test` |
 
+### 🎨 Theme
+Calm greyscale light and dark themes with meaningful accent colours, using the **Poppins** and **Courgette** fonts. See **[docs/THEME.md](docs/THEME.md)** for the full colour palette, typography and design guidelines.
+
 ---
 
 ## 📁 Project Structure
