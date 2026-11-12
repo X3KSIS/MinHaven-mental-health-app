@@ -65,3 +65,6 @@ ios/Flutter/flutter_export_environment.sh
 ios/Flutter/Generated.xcconfig
 ios/Flutter/ephemeral/
 **/build/
+
+# Personal notes (not for GitHub)
+THEME_DESIGN_PROMPT.md
