@@ -11,7 +11,7 @@ plugins {
 android {
     namespace = "com.example.mental_health_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "25.2.9519653"
+    ndkVersion = "30.0.16248370"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
